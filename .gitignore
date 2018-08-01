@@ -1,4 +1,7 @@
 
+/content/*
+
 /docker/mariadb/datadir/*
+
 !/**/.gitkeep
 
