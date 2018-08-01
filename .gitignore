@@ -1,2 +1,4 @@
-docker/mariadb/datadir
-!docker/mariadb/datadir/.gitkeep
+
+/docker/mariadb/datadir/*
+!/**/.gitkeep
+
