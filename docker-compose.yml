@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+
+  apache:
+    build: ./docker/apache
+    ports:
+     - 8081:80
+    volumes:
+     - ./content:/var/www/html
+    depends_on:
+     - php-fpm
+     
+  php-fpm:
+    build: ./docker/php
+    depends_on:
+     - mariadb
+
+  mariadb:
+   image: mariadb:10.3
+   volumes:
+    - ./docker/mariadb/datadir:/var/lib/mysql
+   environment:
+    MYSQL_ROOT_PASSWORD: qwerty
+    
+  phpmyadmin:
+   image: phpmyadmin/phpmyadmin
+   ports:
+    - 8765:80
+   environment:
+    PMA_HOST: mariadb
+   depends_on:
+    - mariadb
+    
